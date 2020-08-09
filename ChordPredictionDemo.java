@@ -60,7 +60,23 @@ class ChordPredictorDemo {
 /**
  *
  */
-class ChordPredictor {  
+class ChordPredictor {
+  enum Key {
+    A, B, C, D, E, F, G
+  }
+
+  enum Mode {
+    Ionian,
+    Dorian,
+    Phrygian,
+    Lydian,
+    Mixolydian,
+    Aeolian,
+    Locrian;
+    public static final Mode Major = Ionian;
+    public static final Mode Minor = Aeolian;
+  }
+
   // I–V–vi–IV
   List<Integer> prog1 = Arrays.asList(1, 5, 6, 4);
   // ii-V-I, Jazz
@@ -75,6 +91,16 @@ class ChordPredictor {
   
   public ChordPredictor() {
     // empty constructor
+  }
+
+  public ChordPredictor(Key key, Mode mode) {
+    // TODO: add modes to the chord prediction
+    // TODO: use midi or add files for each key
+
+    // midi pro: can construct complicated chords
+    // midi con: might be complicated to implement
+    // wav pro: easier to implement
+    // wav con: more data, harder to update and expand
   }
 
   /**
