@@ -60,7 +60,27 @@ class ChordPredictorDemo {
 /**
  *
  */
-class ChordPredictor {  
+class ChordPredictor {
+  enum ChordType {
+    Major,
+    Minor,
+    Diminished
+  }
+
+  class ChordNode {
+    int chordNum;
+    ChordType chordType;
+
+    public ChordNode(int chordNum, ChordType chordType) {
+      this.chordNum = chordNum;
+      this.chordType = chordType;
+    }
+
+    public boolean equals(ChordNode chord) {
+      return this.chordNum == chord.chordNum && this.chordType == chord.chordType;
+    }
+  }
+
   // I–V–vi–IV
   List<Integer> prog1 = Arrays.asList(1, 5, 6, 4);
   // ii-V-I, Jazz
@@ -71,10 +91,37 @@ class ChordPredictor {
   List<Integer> prog4 = Arrays.asList(1, 5, 6, 3, 4, 1, 4, 5);
 
   List<List<Integer>> progressions = Arrays.asList(prog1, prog2, prog3, prog4);
-  
-  
+
+  Map<ChordNode, List<ChordNode>> adjList = new HashMap<>();
+
   public ChordPredictor() {
-    // empty constructor
+    // I–V–vi–IV
+    List<ChordNode> prog1 = Arrays.asList(
+            new ChordNode(1, ChordType.Major),new ChordNode(5, ChordType.Major),
+            new ChordNode(6, ChordType.Minor), new ChordNode(4, ChordType.Major));
+    // ii-V-I
+    List<ChordNode> prog2 = Arrays.asList(new ChordNode(2, ChordType.Minor),
+            new ChordNode(5, ChordType.Major), new ChordNode(1, ChordType.Major));
+    // I-IV-V
+    List<ChordNode> prog3 = Arrays.asList(new ChordNode(1, ChordType.Major),
+            new ChordNode(4, ChordType.Major), new ChordNode(5, ChordType.Major));
+    List<List<ChordNode>> progressions = Arrays.asList(prog1, prog2, prog3);
+
+    for(List<ChordNode> progression : progressions) {
+      addProgression(progression);
+    }
+  }
+
+  // adds chord progression to adjacency list
+  public void addProgression(List<ChordNode> progression) {
+    // TODO
+  }
+
+  // prediction with context
+  public List<ChordNode> predictNextChord(List<ChordNode> currChordProg) {
+    List<ChordNode> result = new LinkedList<>();
+
+    return result;
   }
 
   /**
